@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+
+      <div class="container">
+        <!-- Page Content goes here -->
+        <nav class="nav-extended blue lighten-1">
+          <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo"><img src="http://www.pngall.com/wp-content/uploads/2016/07/Reddit-PNG-File.png"></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="#" class="about-me-target">About Me</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="#" class="about-me-target">About Me</a></li>
+            </ul>
+          </div>
+          <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+              <li class="tab"><a class="active" href="#hot_news_target">Hot</a></li>
+              <li class="tab"><a href="#new_news_target">New</a></li>
+              <li class="tab hidden"><a href="#search_results">Search</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div id="page"></div>
+
+        <!-- Element Showed -->
+        <div class="fixed-action-btn">
+          <a id="menu" class="waves-effect waves-light btn btn-floating" ><i class="material-icons">fingerprint</i></a>
+        </div>
+
+        <!-- Tap Target Structure -->
+        <div class="tap-target cyan about-me-content" data-activates="menu">
+          <div class="tap-target-content">
+            <h5>Sugith Karunaratne</h5>
+            <div class="divider"></div>
+            <p><span class="valign-wrapper"><i class="material-icons">email</i>: sugith.k@gmail.com</span></p>
+            <p><span class="valign-wrapper"><i class="material-icons">call</i>: +1780.680.7354</span></p>
+            <p><span class="valign-wrapper"><i class="material-icons">web</i>: <a href="http://sugith.com" target="_blank">www.sugith.com</a></span></p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <script id="pageTemplate" type="text/ractive">
+        <div id="hot_news_target" class="col s12">{{>hot_news_list}}</div>
+        <div id="new_news_target" class="col s12">{{>new_news_list}}</div>
+        <div id="search_results" class="col s12">{{>search_results_list}}</div>
+      </script>
+
+
+
+      <script id="hot_news_list" type="text/ractive">
+        <ul class="collection">
+          {{#hot_news.data}}
+            <li class="collection-item avatar">
+              <img src="{{thumbnail}}" alt="" class="circle" onerror="this.src='{{url}}'">
+              <span class="title"><a target="_blank" href="{{url}}">{{title}}</a> <span class="badge">{{domain}}</span></span>
+              <p>
+                <span class="submitted-info">submitted 
+                  <span class="created">{{created}}</span> by 
+                  <span class="user-info">{{author}}</span> to 
+                  <span class="to-info">{{subreddit_name_prefixed}}</span>
+                </span>
+              <br />
+              <span class="comments-count">{{num_comments}} comments</span>
+              </p>
+            </li>
+          {{/hot_news.data}}
+        </ul>
+
+        <ul class="pagination center-align">
+          <li class="pagination-read-more">Read More: </li>
+          <li class="{{^hot_news.before}}disabled{{/hot_news.before}} hot_news_prev_page">
+            <a href="#!" data-before="{{hot_news.before}}" on-click="hot_news_before">
+              <i class="material-icons left">chevron_left</i>Prev
+            </a>
+          </li>
+          <li class="{{^hot_news.after}}disabled{{/hot_news.after}} waves-effect hot_news_next_page">
+            <a href="#!" data-after="{{hot_news.after}}" on-click="hot_news_after">
+              <i class="material-icons right">chevron_right</i>Next
+            </a>
+          </li>
+        </ul>
+      </script>
+
+
+      
+      <script id="new_news_list" type="text/ractive">
+        <ul class="collection">
+          {{#new_news.data}}
+            <li class="collection-item avatar">
+              <img src="{{thumbnail}}" alt="" class="circle" onerror="this.src='{{url}}'">
+              <span class="title"><a target="_blank" href="{{url}}">{{title}}</a> <span class="badge">{{domain}}</span></span>
+              <p>
+              <span class="submitted-info">submitted
+                <span class="created">{{created}}</span> by 
+                <span class="user-info">{{author}}</span> to 
+                <span class="to-info">{{subreddit_name_prefixed}}</span>
+              </span>
+              <br />
+              <span class="comments-count">{{num_comments}} comments</span>
+              </p>
+            </li>
+          {{/new_news.data}}
+        </ul>
+
+        <ul class="pagination center-align">
+          <li class="pagination-read-more">Read More: </li>
+          <li class="{{^new_news.before}}disabled{{/new_news.before}} new_news_prev_page">
+            <a href="#!" data-before="{{new_news.before}}" on-click="new_news_before">
+              <i class="material-icons left">chevron_left</i>Prev
+            </a>
+          </li>
+          <li class="{{^new_news.after}}disabled{{/new_news.after}} waves-effect new_news_next_page">
+            <a href="#!" data-after="{{new_news.after}}" on-click="new_news_after">
+              <i class="material-icons right">chevron_right</i>Next
+            </a>
+          </li>
+        </ul>
+      </script>
+
+
+
+      <script id="search_results_list" type="text/ractive">
+        <div class="col s12">
+          <div class="row ">
+            <div class="input-field col m6 s12">
+              <i class="material-icons prefix">search</i>
+              <input id="icon_prefix" type="text" name="search_query" id="search_query">
+              <label for="icon_prefix">Search</label>
+            </div>
+            <div class="input-field col m6 s12 center-align">
+              <a href="#!" class="waves-effect waves-light btn" on-click="search_feeds">Search</a>
+            </div>
+          </div>
+        </div>
+
+
+        <ul class="collection">
+          {{#search_news.data}}
+            <li class="collection-item avatar">
+              <img src="{{thumbnail}}" alt="" class="circle" onerror="this.src='{{url}}'">
+              <span class="title"><a target="_blank" href="{{url}}">{{title}}</a> <span class="badge">{{domain}}</span></span>
+              <p>
+                <span class="submitted-info">submitted
+                  <span class="created">{{created}}</span> by 
+                  <span class="user-info">{{author}}</span> to 
+                  <span class="to-info">{{subreddit_name_prefixed}}</span>
+                </span>
+              <br />
+              <span class="comments-count">{{num_comments}} comments</span>
+              </p>
+            </li>
+          {{/search_news.data}}
+        </ul>
+
+        
+
+        <ul class="pagination center-align">
+          <li class="pagination-read-more">Read More: </li>
+          <li class="{{^search_news.before}}disabled{{/search_news.before}} search_news_prev_page">
+            <a href="#!" data-before="{{search_news.before}}" on-click="search_news_before">
+              <i class="material-icons left">chevron_left</i>Prev
+            </a>
+          </li>
+          <li class="{{^search_news.after}}disabled{{/search_news.after}} waves-effect search_news_next_page">
+            <a href="#!" data-after="{{search_news.after}}" on-click="search_news_after">
+              <i class="material-icons right">chevron_right</i>Next
+            </a>
+          </li>
+        </ul>
+      </script> 
+
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <!-- <script type="text/javascript" src="http://backbonejs.org/backbone.js"></script> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/1.0.0-build-9/ractive.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/moment.js"></script>
+      
+      <script type="text/javascript" src="js/main.js"></script>
+    </body>
+  </html>
+        

@@ -1,0 +1,46 @@
+.brand-logo img{
+  width: 150px;
+}
+
+.about-me-content h5{
+  font-weight: 200;
+  text-transform: uppercase;
+  text-align: right;
+  color:#fff;
+}
+
+.about-me-content p{
+  font-weight: 300;
+  color: #fff;
+  margin:5px;
+}
+
+
+.pagination-read-more{
+  font-size: 1.2rem;
+}
+
+.submitted-info{
+  color:#616161;
+  font-size: .8rem;
+}
+
+.comments-count{
+  font-size: .8rem;
+}
+
+.submitted-info .created{ 
+  color: #01579b; 
+}
+
+.submitted-info .user-info{
+  color: #01579b;
+}
+
+.submitted-info .to-info{
+  color: #01579b;
+}
+
+.about-me-content a{
+  color: #fff;
+}
